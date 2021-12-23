@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script type="text/javascript">
+        function colors() {
+            /*получаем массив на элементы с именем D1 и берем
+                первый из них (наш список) */
+            var color = document.getElementsByName("D1")[0];
+            //с помощью стиля меняем цвет фона страницы на выбранный
+            document.body.style.backgroundColor = color.value;
+            //получаем массив всех элементов списка
+            var opt = document.getElementsByTagName("option");
+            //получаем текст элемента массива с номером, выбранным в списке
+            var text = opt[color.selectedIndex].innerHTML;
+            //получаем ссылку на первый элемент в массиве заголовков h3
+            var h2 = document.getElementsByTagName("h3")[0];
+            //в заголовке показываем новый цвет фона
+            h2.innerHTML = "Текущий цвет - " + text;
+        }
+    </script>
+    <script type="text/javascript">
+        function format() {
+            //получаем номер выбранного переключателя
+            var opt = document.getElementsByName('R1');
+            for (var i = 0; i < opt.length; i++)
+                if (opt[i].checked) {
+                    var key = i;
+                    break;
+                }
+            //обрабатываем выбранный переключатель
+            switch (key) {
+                case 0:
+                    //первая задача
+                    //формируем массив абзацев
+                    var p = document.getElementsByTagName('p');
+                    for (var i = 0; i < p.length; i++)
+                        //если абзац нечетный, присваиваем ему имя класса с серым цветом
+                        if (i % 2 == 0) p[i].className = 'color';
+                    break;
+                case 1:
+                    //вторая задача
+                    //формируем массив списков ul
+                    var ul = document.getElementsByTagName('ul');
+                    for (var i = 0; i < ul.length; i++)
+                        //для каждого списка ul получаем первого ребенка и меняем размер шрифта
+                        ul[i].children[0].style.fontSize = '28px';
+                    break;
+                case 2:
+                    //третья задача
+                    //формируем массив списков ul
+                    var ul = document.getElementsByTagName('ul');
+                    for (var i = 0; i < ul.length; i++) {
+                        //для каждого списка ul формируем массив его элементов il
+                        var li = ul[i].getElementsByTagName('li');
+                        for (j = 0; j < li.length; j++)
+                            //если элемент il не четный, то рисуем рамку красного цвета
+                            if (j % 2 == 0) {
+                                li[j].style.borderColor = 'red';
+                                li[j].style.borderWidth = '1px';
+                                li[j].style.borderStyle = 'solid';
+                                //три предыдущие команды можно заменить одной:
+                                li[j].style.cssText = 'border: solid 1 px red ';
+                            }
+                    }
+                    break;
+                case 3:
+                    //четвертая задача
+                    //формируем массив всех элементов span
+                    var span = document.getElementsByTagName('span');
+                    //вводим новый текст
+                    var text = prompt('Введите текст: ');
+                    for (var i = 0; i < span.length; i++) {
+                        //для каждого элемента span меняем текст и цвет текста
+                        span[i].innerHTML = text;
+                        span[i].style.color = 'blue';
+                    }
+                    break;
+
+            }
+        }
+    </script>
+    <script>
+        function append() { //получаем первый список из массива
+            var ul = document.getElementsByTagName('ul')[1];
+            //вводим текст для нового элемента
+            var text = prompt('Введите текст: ');
+
+            //если текст был введен
+            if (text != '' && text != null) {
+                //создаем новый элемент li
+                var li = document.createElement('li');
+                //задаем для него текст
+                li.innerHTML = text;
+                //добавляем элемент в конец списка
+                document.getElementById("ul").appendChild(li);
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function spoyler() {
+            //получаем ссылку на кнопку с именем b1
+            var button = document.getElementsByName('b1')[1];
+            //получаем ссылку на блок спойлера
+            var split = document.getElementById('spoyler');
+            //если на кнопке надпись "+"
+            if (button.value == '+') {
+                //отображаем спойлер
+                split.style.display = 'block';
+                //меняем надпись на "-"
+                button.value = '-'
+            }
+            //иначе - наоборот
+            else {
+                split.style.display = 'none';
+                button.value = '+'
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <select onchange="colors()" name="D1">
+        <option value="#FFAAA4" selected>красный</option>
+        <option value="#82FFA2">зеленый</option>
+        <option value="#91C8FF">голубой</option>
+        <option value="#FFFFBB">желтый</option>
+    </select>
+    <p>
+        В 1992 году компания Nombas (впоследствии приобретённая Openwave (англ.))
+        начала разработку встраиваемого скриптового языка Cmm (Си-минус-минус),
+        который, по замыслу разработчиков, должен был стать достаточно мощным,
+        чтобы заменить макросы, сохраняя при этом схожесть с Си, чтобы
+        разработчикам не составляло труда изучить его. Главным отличием от Си была
+        работа с памятью.
+    </p>
+    <p>
+        В новом языке всё управление памятью осуществлялось автоматически: не было
+        необходимости создавать буферы, объявлять переменные, осуществлять
+        преобразование типов. В остальном языки сильно походили друг на друга: в
+        частности, Cmm поддерживал стандартные функции и операторы Си. Cmm был
+        переименован в ScriptEase, поскольку исходное название звучало слишком
+        негативно, а упоминание в нём Си «отпугивало» людей.
+    </p>
+    <p>
+        Поскольку требования были размыты, Айка перевели в группу, ответственную
+        за серверные продукты, где он проработал месяц, занимаясь улучшением
+        протокола HTTP. В мае разработчик был переброшен обратно, в команду,
+        занимающуюся клиентской частью (браузером), где он немедленно начал
+        разрабатывать концепцию нового языка программирования.енеджмент разработки
+        браузера, включая Тома Пакина (Tom Paquin), Михаэля Тоя (англ.), Рика
+        Шелла (Rick Schell), был убеждён, что Netscape должен поддерживать язык
+        программирования, встраиваемый в <span>HTML</span>-код страницы.
+    </p>
+    <p>
+        Несмотря на схожий с Си синтаксис, JavaScript по сравнению с языком Си
+        имеет коренные отличия:
+    </p>
+    <ul>
+        <li>объекты, с возможностью интроспекции;</li>
+        <li>функции как объекты первого класса;</li>
+        <li>автоматическое приведение типов;</li>
+        <li>автоматическая сборка мусора;</li>
+        <li>анонимные функции.</li>
+    </ul>
+    <p>
+        Объектная модель документа — интерфейс программирования приложений для
+        <span>HTML</span> и XML-документов. Согласно DOM, документ (например,
+        веб-страница) может быть представлен в виде дерева объектов, обладающих
+        рядом свойств, которые позволяют производить с ним различные манипуляции:
+    </p>
+    <ul id=ul>
+        <li>генерация и добавление узлов,</li>
+        <li>получение узлов,</li>
+        <li>изменение узлов,</li>
+        <li>изменение связей между узлами,</li>
+        <li>удаление узлов.</li>
+    </ul>
+    <input type="radio" name="R1" value="V1" checked />1-я задача<br />
+    <input type="radio" name="R1" value="V2" />2-я задача<br />
+    <input type="radio" name="R1" value="V3" />3-я задача<br />
+    <input type="radio" name="R1" value="V4" />4-я задача<br />
+    <input type="button" name="b1" value="Выполнить" onclick="format()" />
+    <input type="button" name="b2" value="Добавить" onclick="append()" />
+    <div id="wrapper">
+        <p>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing
+            elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+            sociis natoque penatibus et magnis dis parturient montes,
+            nascetur ridiculus mus. Donec quam felis, ultricies nec,
+            pellentesque eu, pretium quis, sem. Nulla consequat massa
+            quis enim. Donec pede justo, fringilla vel, aliquet nec,
+            vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
+            a, venenatis vitae, justo. Nullam dictum felis eu pede
+            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
+            elementum semper nisi. Aenean vulputate eleifend tellus.
+            Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra
+            quis,
+            feugiat a, tellus. Phasellus viverra nulla ut metus varius
+            laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies
+            nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam
+            eget dui. Etiam rhoncus. Maecenas tempus, tellus eget
+            condimentum rhoncus, sem quam semper libero, sit amet
+            adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel,
+            luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et
+            ante tincidunt tempus. Donec vitae sapien ut libero
+            venenatis faucibus. Nullam quis ante. Etiam sit amet orci
+            eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris
+            sit amet nibh. Donec sodales sagittis magna. Sed consequat,
+            leo eget bibendum sodales, augue velit cursus nunc,
+        </p>
+        <input name="b1" type="button" value="+" onclick="spoyler()">
+        <div id="spoyler">
+            Душа моя озарена неземной радостью, как эти чудесные
+            весенние утра, которыми я наслаждаюсь от всего сердца. Я
+            совсем один и блаженствую в здешнем краю, словно созданном
+            для таких, как я. Я так счастлив, мой друг, так упоен
+            ощущением покоя, что искусство мое страдает от этого. Ни
+            одного штриха не мог бы я сделать, а никогда не был таким
+            большим художником, как в эти минуты. Когда от милой моей
+            долины поднимается пар и полдневное солнце стоит над
+            непроницаемой чащей темного леса и лишь редкий луч
+            проскальзывает в его святая святых, а я лежу в высокой траве
+            у быстрого ручья и, прильнув к земле, вижу тысячи
+            всевозможных былинок и чувствую, как близок моему сердцу
+            крошечный мирок, что снует между стебельками, наблюдаю эти
+            неисчислимые, непостижимые разновидности червяков и мошек и
+            чувствую близость всемогущего, создавшего нас по своему
+            подобию, веяние вселюбящего, судившего нам парить в вечном
+            блаженстве, когда взор мой туманится и все вокруг меня и
+            небо надо мной запечатлены в моей душе, точно образ
+            возлюбленной, - тогда, дорогой друг, меня часто томит мысль:
+            "Ах! Как бы выразить, как бы вдохнуть в рисунок то, что так
+            полно, так трепетно живет во мне, запечатлеть отражение моей
+            души, как душа моя - отражение предвечного бога!"
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing
+            elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+            sociis natoque penatibus et magnis dis parturient montes,
+            nascetur ridiculus mus. Donec quam felis, ultricies nec,
+            pellentesque eu, pretium quis, sem. Nulla consequat massa
+            quis enim. Donec pede justo, fringilla vel, aliquet nec,
+            vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
+            a, venenatis vitae, justo. Nullam dictum felis eu pede
+            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
+            elementum semper nisi. Aenean vulputate eleifend tellus.
+            Aenean leo ligula, porttitor eu, consequat vitae, eleifend
+            ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+            feugiat a, tellus. Phasellus viverra nulla ut metus varius
+            laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies
+            nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam
+            eget dui. Etiam rhoncus. Maecenas tempus, tellus eget
+            condimentum rhoncus, sem quam semper libero, sit amet
+            adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel,
+            luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et
+            ante tincidunt tempus. Donec vitae sapien ut libero
+            venenatis faucibus. Nullam quis ante. Etiam sit amet orci
+            eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris
+            sit amet nibh. Donec sodales sagittis magna. Sed consequat,
+            leo eget bibendum sodales, augue velit cursus nunc,
+        </p>
+    </div>
+</body>
+
+</html>

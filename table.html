@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function cols() {
+            //получаем ссылку на таблицу по ее id
+            var tbl = document.getElementById('tbl1');
+            //формируем массив всех строк таблицы
+            var row = tbl.getElementsByTagName('tr');
+            //в цикле проходим по всем строкам
+            for (var i = 0; i < row.length; i++) {
+                //для i-й строки получаем массив ее столбцов
+                var col = row[i].getElementsByTagName('td');
+                //вначале сумма элементов в строке=0
+                var s = 0;
+                //проходим по всем столбцам строки кроме последнего
+                for (var j = 0; j < col.length - 1; j++)
+                    //если в ячейке число, то суммируем его
+                    if (!isNaN(col[j].innerHTML))
+                        s += +col[j].innerHTML;
+                //в последнюю ячейку строки записываем найденную сумму
+                col[col.length - 1].innerHTML = s;
+                //если сумма в строке четная, заливаем строку светло - серым цветом
+                if (s % 2 == 0)
+                    row[i].style.backgroundColor = 'lightgray'
+                //иначе - заливаем светло-голубым
+                else
+                    row[i].style.backgroundColor = 'lightblue';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <table width="200" border="1" id='tbl1'>
+        <tr>
+            <td>1</td>
+            <td>4</td>
+            <td>&nbsp;</td>
+            <td>3</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>&nbsp;</td>
+            <td>3</td>
+            <td>1</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>&nbsp;</td>
+            <td>4</td>
+            <td>5</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>1</td>
+            <td>2</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>1</td>
+            <td>3</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <input type="button" value="Кнопка" onclick="cols()">
+</body>
+
+</html>
